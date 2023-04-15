@@ -4,7 +4,7 @@
 
 n = int(input('Введите колличество элементов в списке: '))
 import random
-list = [random.randint(0,10) for i in range(0,n)]
+list = [random.randint(0,10) for i in range(1,n)]
 print(list)
 x=int(input('Введите число которое ищем: '))
 count=0
