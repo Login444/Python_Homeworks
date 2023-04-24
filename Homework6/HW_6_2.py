@@ -3,7 +3,7 @@
 
 import random
 
-list = [random.randint(-15,15) for i in range(20)]
+list = [random.randint(-15,15) for i in range(random.randint(10,20))]
 
 print(list)
 
