@@ -12,7 +12,6 @@ def operation(rows,columns):
         for j in range(columns):
             a.append(random.randint(1,9))
         matrix.append(a)
-    print(matrix)
     
     for i in range(rows):
         for j in range(columns):
