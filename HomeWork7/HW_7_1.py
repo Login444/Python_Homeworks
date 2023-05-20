@@ -8,3 +8,27 @@
 # В ответе напишите “Парам пам-пам”, если с ритмом все в порядке
 # и “Пам парам”, если с ритмом все не в порядке
 
+def vowels(poem):
+    phrases = []
+    for i in range(len(poem)):
+        count = 0
+        for j in range(len(poem[i])):
+            if poem[i][j] in "ёуеыаоэяию":
+                count+=1
+        phrases.append(count)
+    return phrases
+
+def rythm(list):
+    flag = True
+    for i in range(1,len(list)):
+        if list[0] == list[i]:
+            flag = True
+        else:
+            flag = False
+            break
+    if flag == True:
+        print('Парам пам-пам')
+    else:
+        print('Пам парам')
+
+rythm(vowels(input('Введите стихотворение: ').split()))
