@@ -13,8 +13,11 @@ def vowels(poem):
     for i in range(len(poem)):
         count = 0
         for j in range(len(poem[i])):
-            if poem[i][j] in "ёуеыаоэяию":
-                count+=1
+            if poem[i][j] not in "йцукенгшщзхъэждлорпавыфячсмитьЙЦУКЕНГШЩЗХЪЭЖДЛОРПАВЫФЯЧСМИТЬБЮЁё":
+                return print('Винни пух не знает английский!')
+            else:
+                if poem[i][j] in "ёуеыаоэяиюЁУЕЫАОЭЯИЮ":
+                    count+=1
         phrases.append(count)
     return phrases
 
