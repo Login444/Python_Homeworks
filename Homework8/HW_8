@@ -1,0 +1,99 @@
+from os import path
+
+
+file_base = "base.txt"
+all_data = []
+last_id = 0
+
+if not path.exists(file_base):
+    with open(file_base, "w", encoding="utf-8") as _:
+        pass
+
+def read_records():
+    global all_data, last_id
+
+    with open(file_base, encoding="utf-8") as f:
+        all_data = [i.strip() for i in f]
+        if all_data:
+            last_id = str(all_data[-1].split()[0])
+            return all_data
+        return []
+    
+def show_all():
+    if all_data:
+        print(*all_data, sep="\n")
+    else:
+        print("Empty base!\n")
+
+def add():
+    with open(file_base, "a", encoding="utf-8") as f:
+        f.write(input('Text: ') + '\n')
+
+
+def search():
+    line = input('Кого ищем? ')
+    with open(file_base, "r", encoding="utf-8") as f:
+        for i in f:
+            if line in i:
+                print(i)
+
+def change():
+    with open(file_base, 'r', encoding='utf-8') as f:
+        old_data = f.read()
+
+    new_data = old_data.replace(input('Что меняем? '), input('Введите новые данные: '))
+
+    with open(file_base, 'w', encoding='utf-8') as f:
+        f.write(new_data)
+
+def delete():
+    with open(file_base, 'r', encoding='utf-8') as f:
+        old_data = f.read()
+
+    new_data = old_data.replace(input('Что хотим удалить?''\n'), ' ')
+
+    with open(file_base, 'w', encoding='utf-8') as f:
+        f.write(new_data)
+
+def imp():
+    global file_base
+    new_file = f"{input('Введите имя импортируемого файла: ')}.txt"
+    if path.exists(new_file):
+        file_base = new_file
+        print(file_base)
+    else:
+        print('Not found.')
+
+
+
+def main_menu():
+    work = True
+    while work:
+        read_records()
+        answer = input("Phone book:\n"
+                       "1. Show all\n"
+                        "2. Add\n"
+                        "3. Search\n"
+                        "4. Change\n"
+                        "5. Delete\n"
+                        "6. Exp/Imp\n"
+                        "7. Exit\n")
+        match answer:
+            case "1":
+                show_all()
+            case "2":
+                add()
+            case "3":
+                search()
+            case "4":
+                change()
+            case "5":
+                delete()
+            case "6":
+                imp()
+            case "7":
+                work = False
+            case _:
+                print("Try again!\n")
+
+main_menu()
